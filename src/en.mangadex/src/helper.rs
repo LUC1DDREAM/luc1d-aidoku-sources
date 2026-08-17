@@ -6,7 +6,6 @@ use aidoku::{
     std::{String, Vec},
     DeepLink, Filter, FilterType,
 };
-use alloc::string::ToString;
 
 // Manual i32 to string conversion for no_std
 pub fn i32_to_string(mut n: i32) -> String {

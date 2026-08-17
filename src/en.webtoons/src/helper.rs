@@ -6,7 +6,6 @@ use aidoku::{
     std::{net::Request, String, Vec},
     DeepLink, Filter, FilterType, MangaPageResult,
 };
-use alloc::string::ToString;
 
 use crate::parser;
 

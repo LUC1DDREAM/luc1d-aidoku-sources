@@ -4,9 +4,8 @@ use aidoku::{
     error::{Error, Result},
     prelude::*,
     std::{String, Vec, ArrayRef, ObjectRef},
-    Chapter, Manga, MangaContentRating, MangaPageResult, MangaStatus, MangaViewer, Page,
+    Manga, MangaContentRating, MangaPageResult, MangaStatus, MangaViewer, Chapter, Page,
 };
-use alloc::string::ToString;
 
 const CDN_URL: &str = "https://uploads.mangadex.org";
 

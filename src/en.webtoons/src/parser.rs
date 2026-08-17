@@ -6,7 +6,6 @@ use aidoku::{
     std::{String, Vec, html::Node},
     Chapter, Manga, MangaContentRating, MangaPageResult, MangaStatus, MangaViewer, Page,
 };
-use alloc::string::ToString;
 
 pub fn parse_manga_listing(html: Node, _page: i32) -> Result<MangaPageResult> {
     let items = html.select("ul.card_lst li").array();
