@@ -60,7 +60,11 @@ fn parse_manga_object(obj: ObjectRef) -> Result<Manga> {
             if rel_type == "cover_art" {
                 if let Ok(attr) = rel_obj.get("attributes").as_object() {
                     if let Ok(filename) = attr.get("fileName").as_string() {
-                        cover_url = format!("{}/covers/{}/{}", CDN_URL, id, filename.read());
+                        cover_url.push_str(CDN_URL);
+                        cover_url.push_str("/covers/");
+                        cover_url.push_str(&id);
+                        cover_url.push('/');
+                        cover_url.push_str(&filename.read());
                     }
                 }
             }
@@ -106,7 +110,11 @@ fn parse_manga_object(obj: ObjectRef) -> Result<Manga> {
         author,
         artist: String::new(),
         description,
-        url: format!("https://mangadex.org/title/{}", id),
+        url: {
+            let mut url = String::from("https://mangadex.org/title/");
+            url.push_str(&id);
+            url
+        },
         categories,
         status,
         nsfw,
@@ -191,7 +199,12 @@ pub fn parse_page_list(json: ObjectRef) -> Result<Vec<Page>> {
     
     for (index, img) in images.enumerate() {
         let filename = img.as_string()?.read();
-        let url = format!("{}/data/{}/{}", base_url, hash, filename);
+        
+        let mut url = String::from(&base_url);
+        url.push_str("/data/");
+        url.push_str(&hash);
+        url.push('/');
+        url.push_str(&filename);
         
         pages.push(Page {
             index: index as i32,

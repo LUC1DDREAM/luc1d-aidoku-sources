@@ -191,7 +191,10 @@ fn urlencode(s: &str) -> String {
             b' ' => result.push('+'),
             _ => {
                 result.push('%');
-                result.push_str(&format!("{:02X}", byte));
+                // Manual hex conversion for no_std
+                let hex_chars = b"0123456789ABCDEF";
+                result.push(hex_chars[(byte >> 4) as usize] as char);
+                result.push(hex_chars[(byte & 0x0F) as usize] as char);
             }
         }
     }

@@ -31,7 +31,11 @@ pub fn parse_manga_listing(html: Node, _page: i32) -> Result<MangaPageResult> {
             author,
             artist: String::new(),
             description: String::new(),
-            url: format!("https://www.webtoons.com/{}", id),
+            url: {
+                let mut url = String::from("https://www.webtoons.com/");
+                url.push_str(&id);
+                url
+            },
             categories: Vec::new(),
             status: MangaStatus::Unknown,
             nsfw: MangaContentRating::Safe,
@@ -70,7 +74,11 @@ pub fn parse_manga_details(html: Node, id: String) -> Result<Manga> {
         author,
         artist: String::new(),
         description,
-        url: format!("https://www.webtoons.com/{}", id),
+        url: {
+            let mut url = String::from("https://www.webtoons.com/");
+            url.push_str(&id);
+            url
+        },
         categories,
         status,
         nsfw: MangaContentRating::Safe,
