@@ -1,0 +1,27 @@
+# Rust
+target/
+Cargo.lock
+*.wasm
+
+# AIX packages (tracked in sources/)
+*.aix
+!sources/*.aix
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# macOS
+.DS_Store
+
+# Temp
+*.tmp
+*.bak
