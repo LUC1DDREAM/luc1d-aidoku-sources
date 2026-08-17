@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add to Aidoku - LUC1D's Sources</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        
+        .icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+        
+        .status {
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
+        .status.redirecting {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+        
+        .status.manual {
+            background: #fff3e0;
+            color: #f57c00;
+        }
+        
+        .button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            margin: 10px 0;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .button.secondary {
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .url-box {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            word-break: break-all;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .steps {
+            text-align: left;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #f0f0f0;
+        }
+        
+        .steps h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .steps ol {
+            padding-left: 20px;
+        }
+        
+        .steps li {
+            color: #666;
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+        
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(25, 118, 210, 0.3);
+            border-top-color: #1976d2;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">📚</div>
+        <h1>LUC1D's Aidoku Sources</h1>
+        <p class="subtitle">Premium manga sources with advanced features</p>
+        
+        <div id="status" class="status redirecting">
+            <span class="spinner"></span>
+            Opening Aidoku...
+        </div>
+        
+        <a href="#" id="retryButton" class="button" style="display:none;">Try Again</a>
+        
+        <div class="url-box">
+            https://luc1ddream.github.io/luc1d-aidoku-sources/index.json
+        </div>
+        
+        <div class="steps">
+            <h3>📱 If Aidoku didn't open:</h3>
+            <ol>
+                <li>Open the <strong>Aidoku</strong> app</li>
+                <li>Go to <strong>Browse</strong> → <strong>Sources</strong></li>
+                <li>Tap the <strong>+</strong> button (top right)</li>
+                <li>Paste the URL above</li>
+                <li>Enjoy! 🎉</li>
+            </ol>
+        </div>
+        
+        <div style="margin-top: 30px;">
+            <a href="https://github.com/LUC1DDREAM/luc1d-aidoku-sources" class="button secondary">
+                View on GitHub
+            </a>
+        </div>
+    </div>
+    
+    <script>
+        const catalogUrl = 'https://luc1ddream.github.io/luc1d-aidoku-sources/index.json';
+        const aidokuUrl = `aidoku://addSourceList?url=${encodeURIComponent(catalogUrl)}`;
+        const statusDiv = document.getElementById('status');
+        const retryButton = document.getElementById('retryButton');
+        
+        function tryRedirect() {
+            // Try to open Aidoku
+            window.location.href = aidokuUrl;
+            
+            // After 3 seconds, show manual instructions
+            setTimeout(() => {
+                statusDiv.className = 'status manual';
+                statusDiv.innerHTML = '⚠️ Couldn\'t open Aidoku automatically';
+                retryButton.style.display = 'inline-block';
+            }, 3000);
+        }
+        
+        // Try redirect on page load
+        tryRedirect();
+        
+        // Retry button
+        retryButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            statusDiv.className = 'status redirecting';
+            statusDiv.innerHTML = '<span class="spinner"></span> Opening Aidoku...';
+            retryButton.style.display = 'none';
+            tryRedirect();
+        });
+    </script>
+</body>
+</html>

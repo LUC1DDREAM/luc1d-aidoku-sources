@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUC1D's Aidoku Sources</title>
+    <meta name="description" content="Premium manga sources for Aidoku with unlock timers, premium detection, and advanced features.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .logo {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .tagline {
+            font-size: 20px;
+            opacity: 0.9;
+        }
+        
+        .cta-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            margin-bottom: 40px;
+        }
+        
+        .cta-section h2 {
+            color: #333;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 50px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 20px;
+            margin: 10px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+        }
+        
+        .sources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .source-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            transition: transform 0.2s;
+        }
+        
+        .source-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .source-card h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .source-status {
+            display: inline-block;
+            background: #4caf50;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .features {
+            list-style: none;
+            margin-top: 15px;
+        }
+        
+        .features li {
+            padding: 8px 0;
+            opacity: 0.9;
+        }
+        
+        .features li:before {
+            content: "✓ ";
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        
+        .info-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .info-section h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+        
+        .info-section p {
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            opacity: 0.8;
+        }
+        
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 500;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 36px;
+            }
+            
+            .cta-button {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">📚</div>
+            <h1>LUC1D's Aidoku Sources</h1>
+            <p class="tagline">Premium manga sources with advanced features</p>
+        </header>
+        
+        <div class="cta-section">
+            <h2>Ready to get started?</h2>
+            <a href="add.html" class="cta-button">➕ Add to Aidoku</a>
+            <a href="https://github.com/LUC1DDREAM/luc1d-aidoku-sources" class="cta-button" style="background: #333;">⚙️ View Source Code</a>
+        </div>
+        
+        <div class="sources-grid">
+            <div class="source-card">
+                <h3>📖 Asura Scans</h3>
+                <span class="source-status">✓ ACTIVE</span>
+                <p>Enhanced Asura Scans source with premium features</p>
+                <ul class="features">
+                    <li>Premium chapter detection</li>
+                    <li>Unlock countdown timers</li>
+                    <li>Fast API-based loading</li>
+                    <li>Advanced search filters</li>
+                    <li>High-quality images</li>
+                </ul>
+            </div>
+            
+            <div class="source-card">
+                <h3>🚀 More Coming Soon</h3>
+                <span class="source-status" style="background: #ff9800;">IN DEVELOPMENT</span>
+                <p>Additional premium sources are in development</p>
+                <ul class="features">
+                    <li>Custom implementations</li>
+                    <li>Enhanced features</li>
+                    <li>Regular updates</li>
+                    <li>Bug fixes & improvements</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="info-section">
+            <h2>❓ What is this?</h2>
+            <p>
+                This is a custom source repository for the <strong>Aidoku</strong> manga reader app. 
+                It provides enhanced versions of popular manga sources with advanced features like 
+                premium chapter detection, unlock timers, and improved performance. All sources are 
+                open-source and regularly updated.
+            </p>
+        </div>
+        
+        <div class="info-section">
+            <h2>🔒 Is it safe?</h2>
+            <p>
+                Yes! All source code is publicly available on GitHub. You can review every line of 
+                code yourself. The sources are built using GitHub Actions with full transparency. 
+                No tracking, no ads, no data collection.
+            </p>
+        </div>
+        
+        <footer>
+            <a href="add.html">Add to Aidoku</a>
+            <a href="https://github.com/LUC1DDREAM/luc1d-aidoku-sources">GitHub</a>
+            <a href="https://github.com/LUC1DDREAM/luc1d-aidoku-sources/issues">Report Issue</a>
+            <br><br>
+            <p>Maintained by LUC1D • Sources for personal use only</p>
+        </footer>
+    </div>
+</body>
+</html>
