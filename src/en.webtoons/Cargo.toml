@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-aidoku = { git = "https://github.com/Aidoku/aidoku-rs", branch = "main" }
+aidoku = { git = "https://github.com/Aidoku/aidoku-rs", branch = "legacy" }
 
 [profile.release]
 strip = true
