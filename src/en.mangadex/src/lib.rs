@@ -18,7 +18,7 @@ const CDN_URL: &str = "https://uploads.mangadex.org";
 fn get_manga_list(filters: Vec<Filter>, page: i32) -> Result<MangaPageResult> {
     let mut url = String::from(BASE_URL);
     url.push_str("/manga?limit=20&offset=");
-    url.push_str(&((page - 1) * 20).to_string());
+    url.push_str(&helper::i32_to_string((page - 1) * 20));
     url.push_str(&helper::get_filter_string(filters));
     url.push_str("&includes[]=cover_art&includes[]=author&includes[]=artist");
     url.push_str("&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica");
@@ -32,7 +32,7 @@ fn get_manga_list(filters: Vec<Filter>, page: i32) -> Result<MangaPageResult> {
 fn get_manga_listing(listing: Listing, page: i32) -> Result<MangaPageResult> {
     let mut url = String::from(BASE_URL);
     url.push_str("/manga?limit=20&offset=");
-    url.push_str(&((page - 1) * 20).to_string());
+    url.push_str(&helper::i32_to_string((page - 1) * 20));
     url.push_str("&includes[]=cover_art&includes[]=author&includes[]=artist");
     url.push_str("&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica");
     
@@ -80,9 +80,9 @@ fn get_chapter_list(id: String) -> Result<Vec<Chapter>> {
         url.push_str("/manga/");
         url.push_str(&id);
         url.push_str("/feed?limit=");
-        url.push_str(&limit.to_string());
+        url.push_str(&helper::i32_to_string(limit));
         url.push_str("&offset=");
-        url.push_str(&offset.to_string());
+        url.push_str(&helper::i32_to_string(offset));
         url.push_str("&translatedLanguage[]=en");
         url.push_str("&includes[]=scanlation_group");
         url.push_str("&order[chapter]=desc");

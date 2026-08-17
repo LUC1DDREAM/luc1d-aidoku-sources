@@ -8,6 +8,31 @@ use aidoku::{
 };
 use alloc::string::ToString;
 
+// Manual i32 to string conversion for no_std
+pub fn i32_to_string(mut n: i32) -> String {
+    if n == 0 {
+        return String::from("0");
+    }
+    
+    let negative = n < 0;
+    if negative {
+        n = -n;
+    }
+    
+    let mut buf = Vec::new();
+    while n > 0 {
+        buf.push((b'0' + (n % 10) as u8) as char);
+        n /= 10;
+    }
+    
+    if negative {
+        buf.push('-');
+    }
+    
+    buf.reverse();
+    buf.into_iter().collect()
+}
+
 pub fn get_filter_string(filters: Vec<Filter>) -> String {
     let mut query = String::new();
     let mut tags_included = Vec::new();

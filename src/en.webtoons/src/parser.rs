@@ -16,9 +16,8 @@ pub fn parse_manga_listing(html: Node, _page: i32) -> Result<MangaPageResult> {
         let node = item.as_node()?;
         
         let link = node.select("a").attr("href").read();
-        let id = link.trim_start_matches("https://www.webtoons.com/")
-            .trim_start_matches("http://www.webtoons.com/")
-            .to_string();
+        let id = String::from(link.trim_start_matches("https://www.webtoons.com/")
+            .trim_start_matches("http://www.webtoons.com/"));
         
         let title = node.select(".subj").text().read();
         let cover = node.select("img").attr("src").read();
@@ -57,7 +56,7 @@ pub fn parse_manga_details(html: Node, id: String) -> Result<Manga> {
     
     let genre_text = html.select(".genre").text().read();
     let categories = genre_text.split(',')
-        .map(|s| s.trim().to_string())
+        .map(|s| String::from(s.trim()))
         .filter(|s| !s.is_empty())
         .collect();
     
@@ -94,9 +93,8 @@ pub fn parse_chapter_list(html: Node) -> Result<Vec<Chapter>> {
         let node = item.as_node()?;
         
         let link = node.select("a").attr("href").read();
-        let id = link.trim_start_matches("https://www.webtoons.com/")
-            .trim_start_matches("http://www.webtoons.com/")
-            .to_string();
+        let id = String::from(link.trim_start_matches("https://www.webtoons.com/")
+            .trim_start_matches("http://www.webtoons.com/"));
         
         let title = node.select(".subj span").text().read();
         

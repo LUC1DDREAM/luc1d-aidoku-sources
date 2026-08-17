@@ -12,6 +12,31 @@ use crate::parser;
 
 const BASE_URL: &str = "https://www.webtoons.com";
 
+// Manual i32 to string conversion for no_std
+pub fn i32_to_string(mut n: i32) -> String {
+    if n == 0 {
+        return String::from("0");
+    }
+    
+    let negative = n < 0;
+    if negative {
+        n = -n;
+    }
+    
+    let mut buf = Vec::new();
+    while n > 0 {
+        buf.push((b'0' + (n % 10) as u8) as char);
+        n /= 10;
+    }
+    
+    if negative {
+        buf.push('-');
+    }
+    
+    buf.reverse();
+    buf.into_iter().collect()
+}
+
 pub fn search_manga(filters: Vec<Filter>, page: i32) -> Result<MangaPageResult> {
     let mut title = String::new();
     
@@ -38,7 +63,7 @@ pub fn search_manga(filters: Vec<Filter>, page: i32) -> Result<MangaPageResult> 
     
     if page > 1 {
         url.push_str("&page=");
-        url.push_str(&page.to_string());
+        url.push_str(&i32_to_string(page));
     }
     
     let html = Request::new(&url, aidoku::std::net::HttpMethod::Get).html()?;
@@ -52,12 +77,11 @@ pub fn parse_incoming_url(url: String) -> Result<DeepLink> {
             .trim_start_matches("http://www.webtoons.com/")
             .split('?')
             .next()
-            .unwrap_or("")
-            .to_string();
+            .unwrap_or("");
         
         if !id.is_empty() {
             return Ok(DeepLink {
-                manga: Some(id),
+                manga: Some(String::from(id)),
                 chapter: None,
             });
         }
@@ -69,13 +93,12 @@ pub fn parse_incoming_url(url: String) -> Result<DeepLink> {
             .trim_start_matches("http://www.webtoons.com/")
             .split('&')
             .next()
-            .unwrap_or("")
-            .to_string();
+            .unwrap_or("");
         
         if !id.is_empty() {
             return Ok(DeepLink {
                 manga: None,
-                chapter: Some(id),
+                chapter: Some(String::from(id)),
             });
         }
     }
