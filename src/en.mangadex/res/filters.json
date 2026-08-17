@@ -1,0 +1,104 @@
+[
+	{
+		"type": "title"
+	},
+	{
+		"type": "author"
+	},
+	{
+		"type": "select",
+		"name": "Status",
+		"options": [
+			"Any",
+			"Ongoing",
+			"Completed",
+			"Hiatus",
+			"Cancelled"
+		]
+	},
+	{
+		"type": "select",
+		"name": "Demographic",
+		"options": [
+			"Any",
+			"Shounen",
+			"Shoujo",
+			"Seinen",
+			"Josei"
+		]
+	},
+	{
+		"type": "select",
+		"name": "Content Rating",
+		"options": [
+			"Safe",
+			"Erotica",
+			"Pornographic"
+		]
+	},
+	{
+		"type": "sort",
+		"name": "Sort",
+		"options": [
+			"Latest Upload",
+			"Title",
+			"Rating",
+			"Follows",
+			"Created At",
+			"Year"
+		],
+		"canAscend": true
+	},
+	{
+		"type": "genre",
+		"name": "Action"
+	},
+	{
+		"type": "genre",
+		"name": "Adventure"
+	},
+	{
+		"type": "genre",
+		"name": "Comedy"
+	},
+	{
+		"type": "genre",
+		"name": "Drama"
+	},
+	{
+		"type": "genre",
+		"name": "Fantasy"
+	},
+	{
+		"type": "genre",
+		"name": "Horror"
+	},
+	{
+		"type": "genre",
+		"name": "Mystery"
+	},
+	{
+		"type": "genre",
+		"name": "Romance"
+	},
+	{
+		"type": "genre",
+		"name": "Sci-Fi"
+	},
+	{
+		"type": "genre",
+		"name": "Slice of Life"
+	},
+	{
+		"type": "genre",
+		"name": "Sports"
+	},
+	{
+		"type": "genre",
+		"name": "Supernatural"
+	},
+	{
+		"type": "genre",
+		"name": "Thriller"
+	}
+]

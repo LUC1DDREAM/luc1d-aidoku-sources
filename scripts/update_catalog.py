@@ -9,7 +9,28 @@ from datetime import datetime, timezone
 ROOT = Path(__file__).resolve().parents[1]
 SOURCES_DIR = ROOT / "sources"
 ICONS_DIR = ROOT / "icons"
-CONFIG_DIR = ROOT / "config"
+
+# Source metadata mapping
+SOURCE_INFO = {
+    "en.asurascans": {
+        "name": "Asura Scans",
+        "languages": ["en"],
+        "contentRating": 0,
+        "baseURL": "https://asurascans.com"
+    },
+    "en.mangadex": {
+        "name": "MangaDex",
+        "languages": ["en"],
+        "contentRating": 2,
+        "baseURL": "https://mangadex.org"
+    },
+    "en.webtoons": {
+        "name": "WEBTOON",
+        "languages": ["en"],
+        "contentRating": 1,
+        "baseURL": "https://www.webtoons.com"
+    }
+}
 
 def main():
     sources = []
@@ -25,6 +46,13 @@ def main():
         source_id = name_parts[0]
         version = int(name_parts[1])
         
+        # Get metadata
+        if source_id not in SOURCE_INFO:
+            print(f"WARNING: No metadata for {source_id}, skipping")
+            continue
+        
+        info = SOURCE_INFO[source_id]
+        
         # Calculate SHA256
         sha256 = hashlib.sha256(aix_file.read_bytes()).hexdigest()
         
@@ -34,19 +62,19 @@ def main():
         
         if not icon_path.exists():
             print(f"WARNING: Icon missing for {source_id} v{version}")
-            continue
+            icon_url = f"icons/{icon_name}"  # Will be placeholder
+        else:
+            icon_url = f"icons/{icon_name}"
         
-        # Read source.json from AIX (simple approach - we know the structure)
-        # For now, use hardcoded metadata
         sources.append({
             "id": source_id,
-            "name": "Asura Scans",
+            "name": info["name"],
             "version": version,
-            "iconURL": f"icons/{icon_name}",
+            "iconURL": icon_url,
             "downloadURL": f"sources/{aix_file.name}",
-            "languages": ["en"],
-            "contentRating": 0,
-            "baseURL": "https://asurascans.com",
+            "languages": info["languages"],
+            "contentRating": info["contentRating"],
+            "baseURL": info["baseURL"],
             "sha256": sha256
         })
     

@@ -1,0 +1,72 @@
+name: Build WEBTOON v1
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'src/en.webtoons/**'
+
+permissions:
+  contents: write
+
+env:
+  PYTHONDONTWRITEBYTECODE: "1"
+
+concurrency:
+  group: build-webtoon
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Install Rust toolchain
+        run: |
+          rustup toolchain install stable --profile minimal
+          rustup target add wasm32-unknown-unknown
+
+      - name: Build source
+        working-directory: src/en.webtoons
+        run: |
+          bash scripts/build.sh
+
+      - name: Package AIX
+        working-directory: src/en.webtoons
+        run: |
+          mkdir -p Payload
+          cp res/source.json Payload/
+          cp res/icon.png Payload/ 2>/dev/null || echo "Icon missing, using placeholder"
+          cp res/filters.json Payload/ 2>/dev/null || true
+          cp res/listings.json Payload/ 2>/dev/null || true
+          cp target/wasm32-unknown-unknown/release/*.wasm Payload/main.wasm
+          zip -q -r en.webtoons-v1.aix Payload/
+          unzip -l en.webtoons-v1.aix
+
+      - name: Move to sources
+        run: |
+          mkdir -p sources icons
+          mv src/en.webtoons/en.webtoons-v1.aix sources/
+          cp src/en.webtoons/res/icon.png icons/en.webtoons-v1.png 2>/dev/null || echo "Icon missing"
+
+      - name: Run catalog update
+        run: python3 scripts/update_catalog.py
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m "feat: WEBTOON v1 - Fast Pass detection with unlock timers"
+            git push origin main
+          else
+            echo "No changes to commit"
+          fi

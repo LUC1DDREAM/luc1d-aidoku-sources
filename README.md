@@ -45,6 +45,26 @@ https://luc1ddream.github.io/luc1d-aidoku-sources/index.json
   - 🖼️ High-quality images
   - ⚡ Fast API-based loading
 
+### MangaDex
+- **Status:** ✅ Active
+- **Language:** English (+ multi-language support)
+- **Features:**
+  - 👥 Scanlation group info
+  - 🏷️ Advanced tag filtering
+  - 🌍 Multi-language support
+  - 🖼️ High-quality images
+  - ⚡ Official API integration
+
+### WEBTOON
+- **Status:** ✅ Active
+- **Language:** English
+- **Features:**
+  - 💎 Fast Pass detection
+  - ⏰ Episode unlock timers
+  - 🔖 Status badges (Free/Locked)
+  - 📱 Scroll viewer optimized
+  - 📅 Daily updates tracking
+
 ---
 
 ## ❓ FAQ

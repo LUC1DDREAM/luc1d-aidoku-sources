@@ -1,0 +1,31 @@
+[
+	{
+		"type": "title"
+	},
+	{
+		"type": "select",
+		"name": "Type",
+		"options": [
+			"All",
+			"Originals",
+			"Canvas"
+		]
+	},
+	{
+		"type": "select",
+		"name": "Genre",
+		"options": [
+			"All",
+			"Action",
+			"Comedy",
+			"Drama",
+			"Fantasy",
+			"Horror",
+			"Romance",
+			"Sci-Fi",
+			"Slice of Life",
+			"Supernatural",
+			"Thriller"
+		]
+	}
+]
